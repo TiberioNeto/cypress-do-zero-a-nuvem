@@ -92,12 +92,20 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .check()
       .should("be.checked")
   })
-  it("marca cada tipo de atendimento", () => {
+  it("Marca cada tipo de atendimento", () => {
     cy.get('input[type="radio"]')
       .each(typeOfService => {
         cy.wrap(typeOfService)
           .check()
           .should('be.checked')
       })
+  })
+  it("marca ambos checkboxes, depois desmarca o último", () => {
+    cy.get('input[type="checkbox"')
+      .check()
+      .should("be.checked")
+      .last()
+      .uncheck()
+      .should("not.be.checked")
   })
 })

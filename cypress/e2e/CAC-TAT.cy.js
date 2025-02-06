@@ -87,9 +87,17 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .select(1)
       .should('have.value', 'blog')
   })
-  it.only('Marca o tipo de atendimento "Feedback" ', () => {
+  it('Marca o tipo de atendimento "Feedback" ', () => {
     cy.get('input[type="radio"][value="feedback"]')
       .check()
       .should("be.checked")
+  })
+  it("marca cada tipo de atendimento", () => {
+    cy.get('input[type="radio"]')
+      .each(typeOfService => {
+        cy.wrap(typeOfService)
+          .check()
+          .should('be.checked')
+      })
   })
 })

@@ -66,10 +66,15 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('button[type="submit"]').click()
     cy.get(".error").should("be.visible")
   })
-  it.only("Envia o formuário com sucesso usando um comando customizado ", () => {
+  it("Envia o formuário com sucesso usando um comando customizado ", () => {
 
     cy.fillMandatoryFieldsAndSubmit()
 
     cy.get('.success').should('be.visible')
+  })
+  it.only("Seleciona um produto (YouTube) por seu texto", () => {
+    cy.get('#product')
+      .select("YouTube")
+      .should("have.value", "youtube")
   })
 })

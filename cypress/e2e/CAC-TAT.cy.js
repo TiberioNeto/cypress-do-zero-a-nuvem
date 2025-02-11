@@ -192,10 +192,22 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .invoke('hide')
       .should('not.be.visible')
   })
-  it.only('preenche o campo da área de texto usando o comando invoke', () => {
+  it('preenche o campo da área de texto usando o comando invoke', () => {
     cy.get('#open-text-area')
       .invoke('val', 'Papai ama Nena')
       .should('have.value', 'Papai ama Nena')
+  })
+  it('Faz uma requisiÇão HTTP', () => {
+    cy.request('https://cac-tat-v3.s3.eu-central-1.amazonaws.com/index.html')
+      .as('getRequest')
+      .its('status')
+      .should('be.equal', 200)
+    cy.get('@getRequest')
+      .its('statusText')
+      .should('be.equal', 'OK')
+    cy.get('@getRequest')
+      .its('body')
+      .should('include', 'CAC TAT')
   })
 
 })

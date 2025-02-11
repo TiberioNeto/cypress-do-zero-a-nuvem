@@ -43,9 +43,9 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .should("have.value", "")
   })
   it("Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", () => {
-    
+
     cy.clock()
-    
+
     cy.get('#firstName').type("Tibério")
     cy.get('#lastName').type("Neto")
     cy.get('#email').type("athanetto@gmail.com")
@@ -84,8 +84,8 @@ describe('Central de Atendimento ao Cliente TAT', () => {
   })
   it("Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", () => {
 
-  cy.clock()
-    
+    cy.clock()
+
     cy.get('button[type="submit"]').click()
     cy.get(".error").should("be.visible")
 
@@ -176,7 +176,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
     cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible')
   })
-  it.only('exibe e oculta as mensagens de sucesso e erro usando .invoke()', () => {
+  it('exibe e oculta as mensagens de sucesso e erro usando .invoke()', () => {
     cy.get('.success')
       .should('not.be.visible')
       .invoke('show')
@@ -192,6 +192,10 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .invoke('hide')
       .should('not.be.visible')
   })
-  
-  
+  it.only('preenche o campo da área de texto usando o comando invoke', () => {
+    cy.get('#open-text-area')
+      .invoke('val', 'Papai ama Nena')
+      .should('have.value', 'Papai ama Nena')
+  })
+
 })

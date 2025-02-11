@@ -209,5 +209,9 @@ describe('Central de Atendimento ao Cliente TAT', () => {
       .its('body')
       .should('include', 'CAC TAT')
   })
-
+  it('Encontra o Gato escondido', () => {
+    cy.get('#cat')
+      .invoke('show')
+      .should('be.visible')
+  })
 })
